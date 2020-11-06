@@ -56,7 +56,6 @@ ToppingList.prototype.AssignID=function(){
   return this.toppingID;
 }
 
-
 let pizza = new Pizza();
 //pizza sizes
 let small = new Size('10"', 9.5);
@@ -70,9 +69,9 @@ sizeList.addSize(large);
 
 //pizza toppings
 let salami = new Topping("Salami", 1.5);
-let parmesan = new Topping("Parmezan", 1);
+let parmesan = new Topping("Parmezan", 0.9);
 let basil = new Topping("Basil", 0.5);
-let pesto = new Topping("Pesto", 1);
+let pesto = new Topping("Pesto", 1.1);
 
 let toppingList=new ToppingList();
 toppingList.addTopping(salami);
@@ -95,20 +94,20 @@ toppingList.addTopping(pesto);
 //   })
 
 
-// }
-// function displayPizzaToppings(pizzaToppingsToShow) {
-//   let pizzaToppingSelect = $("div#toppings");
-//   htmlForPizzaToppings = "";
-//   pizzaToppingsToShow.toppings.forEach(function (topping) {
-//     htmlForPizzaToppings += "<label for=topping.toppingName></label><input type='checkbox'>" + topping.toppingName + ": " + "$" + topping.toppingPrice + "</label><br>";
-//   })
-//   pizzaToppingSelect.html(htmlForPizzaToppings);
+//}
+function displayPizzaToppingList(toppingListToShow) {
+  let pizzaToppingSelect = $("div#toppings");
+  htmlForPizzaToppingList = "";
+  toppingListToShow.toppings.forEach(function (topping) {
+    htmlForPizzaToppingList += "<label for=topping.toppingName></label><input type='checkbox'>" + topping.toppingName + ": " + "$" + topping.toppingPrice + "</label><br>";
+  })
+  pizzaToppingSelect.html(htmlForPizzaToppingList);
 
-// }
+}
 
 
 $(document).ready(function () {
-  displayPizzaToppings(pizza);
+  displayPizzaToppingList(toppingList);
 
 
   event.preventDefault();
