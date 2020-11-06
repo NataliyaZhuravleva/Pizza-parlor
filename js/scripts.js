@@ -13,6 +13,15 @@ Pizza.prototype.addToppings=function(toppingName){
   this.toppings.push(toppingName);
 }
 
+Pizza.prototype.calculatePizzaPrice=function(){
+  let toppingsTotalPrice=0;
+  this.toppings.forEach(function(topping){
+    toppingsTotalPrice+=topping.toppingPrice;   
+  });
+  this.totalPrice=this.size.sizePrice+toppingsTotalPrice;
+  console.log(this.totalPrice);
+}
+
 function Size(pizzaSize, sizePrice) {
   this.pizzaSize = pizzaSize;
   this.sizePrice = sizePrice;
@@ -34,6 +43,11 @@ let salami = new Topping("Salami", 1.5);
 let parmesan = new Topping("Parmezan", 1);
 let basil = new Topping("Basil", 0.5);
 let pesto = new Topping("Pesto", 1);
+
+pizza.setSize(medium);
+pizza.addToppings(salami);
+pizza.addToppings(pesto);
+pizza.calculatePizzaPrice();
 
 // User interface logic:
 

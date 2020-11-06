@@ -48,11 +48,13 @@ _If you have any questions, ideas or concerns, please, contact me at [natalindri
 | _Size (pizzaSize, sizePrice)_ | | | 
 | Should create an instance of Size | let medium = new Size('12"', 10.5); | medium = Size {pizzaSize: "12"", sizePrize: 10.5} |
 | _Topping (toppingName, toppingPrice)_ | | | 
-| Should create an instance of Topping | let basil = new Topping("Basil", 0.5);| basil = Topping {toppingName: "Basil", toppingPrice: 0.5} |
+| Should create an instance of Topping | let basil = new Topping("Basil", 0.5);| basil === Topping {toppingName: "Basil", toppingPrice: 0.5} |
 |_setSize (pizzaSize)_ | | | 
-| Should set pizza's size to instance of Pizza | pizza.setSize (medium) | pizza.size = {pizzaSize: "12"", sizePrice: 10.5} |
+| Should set pizza's size to instance of Pizza | pizza.setSize (medium) | pizza.size === {pizzaSize: "12"", sizePrice: 10.5} |
 |_addTopings (toppingName)_ | | | 
-| Should add pizza's topping names to instance of Pizza | pizza.addToppings (salami) | pizza.toppings = {toppingName: "Salami", toppingPrice: 1.5} |
+| Should add pizza's topping names to instance of Pizza | pizza.addToppings (salami) | pizza.toppings === {toppingName: "Salami", toppingPrice: 1.5} |
+|_calculatePizzaPrice ()_ | | | 
+| Should calculate pizza price | pizza.setSize(medium); pizza.addToppings(salami); pizza.addToppings(pesto); pizza.calculatePizzaPrice(); | 13 |
 
 
 ### <span style="color:#0ec2b8">License</span> 
