@@ -1,21 +1,30 @@
 // Business logic:
-function Pizza (){
-  this.sizes=[];
-  this.toppings=[];
+function Pizza() {
+  this.sizes = [];
+  this.toppings = [];
 }
 
-function Size(pizzaSize,sizePrice){
-this.pizzaSize=pizzaSize;
-this.sizePrice=sizePrice;
+function Size(pizzaSize, sizePrice) {
+  this.pizzaSize = pizzaSize;
+  this.sizePrice = sizePrice;
 }
 
-function Topping(toppingName, toppingPrice){
-this.toppingName=toppingName;
-this.toppingPrice=toppingPrice;
+function Topping(toppingName, toppingPrice) {
+  this.toppingName = toppingName;
+  this.toppingPrice = toppingPrice;
 }
 
-let pizza=new Pizza();
+let pizza = new Pizza();
+//pizza sizes
+let small = new Size('10"', 9.5);
+let medium = new Size('12"', 10.5);
+let large = new Size('14"', 12);
 
+//pizza toppings
+let salami = new Topping("Salami", 1.5);
+let parmesan = new Topping("Parmezan", 1);
+let basil = new Topping("Basil", 0.5);
+let pesto = new Topping("Pesto", 1);
 
 // User interface logic:
 

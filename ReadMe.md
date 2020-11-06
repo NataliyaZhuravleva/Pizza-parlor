@@ -6,7 +6,7 @@
 
 ## <span style="color:#0ec2b8">Description</span>
 
-_ A website for a pizza company where a user can choose one or more individual toppings (cheese, pepperoni, artichoke, anchovy) and a size to order a pizza and see the final cost._
+_A website for a pizza company where a user can choose one or more individual toppings (cheese, pepperoni, artichoke, anchovy) and a size to order a pizza and see the final cost._
 
 
 ## <span style="color:#0ec2b8">Setup/Installation Requirements</span>
@@ -43,10 +43,12 @@ _If you have any questions, ideas or concerns, please, contact me at [natalindri
 
 ## <span style="color:#0ec2b8">Specs</span>
 
-Describe: function():
-
-1. Test: "It returns "<br>
-    Expect: (function()).toEqual(value);
+| Test | Input | Output |
+| :---------------- | :------------------| :--------------- |
+| _function Size (pizzaSize, sizePrice)_ | | | 
+| Should create an instance of Size | let medium = new Size('12"', 10.5); | medium = Size {pizzaSize: "12"", sizePrize: 10.5} |
+| _function Topping (toppingName, toppingPrice)_ | | | 
+| Should create an instance of Topping | let basil = new Topping("Basil", 0.5);| basil = Topping {toppingName: "Basil", toppingPrice: 0.5} |
 
 ### <span style="color:#0ec2b8">License</span> 
 
