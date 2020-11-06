@@ -61,6 +61,8 @@ _If you have any questions, ideas or concerns, please, contact me at [natalindri
 | Should add topping to ToppingList array| toppingList.addTopping(salami); | toppingList.toppings[0] = {toppingName: "Salami", toppingPrice: 1.5, id: 1} |
 |_displayPizzaToppingList ()_ | | | 
 | Should show checkboxes with toppings| displayPizzaToppingList(toppingList) | Checkboxes for Salami: $1.5, Parmesan $0.9, Basil: $0.5, Pesto: $1.1 |
+|_displayPizzaSizeList ()_ | | | 
+| Should show checklist with sizes| displayPizzaSizeList(sizeList) | Checklist for 10", 12", 14" |
 
 
 
