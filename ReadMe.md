@@ -51,6 +51,8 @@ _If you have any questions, ideas or concerns, please, contact me at [natalindri
 | Should create an instance of Topping | let basil = new Topping("Basil", 0.5);| basil = Topping {toppingName: "Basil", toppingPrice: 0.5} |
 |_setSize (pizzaSize)_ | | | 
 | Should set pizza's size to instance of Pizza | pizza.setSize (medium) | pizza.size = {pizzaSize: "12"", sizePrice: 10.5} |
+|_addTopings (toppingName)_ | | | 
+| Should add pizza's topping names to instance of Pizza | pizza.addToppings (salami) | pizza.toppings = {toppingName: "Salami", toppingPrice: 1.5} |
 
 
 ### <span style="color:#0ec2b8">License</span> 

@@ -1,11 +1,15 @@
 // Business logic:
 function Pizza() {
-  this.sizes = [];
+  this.size=0;
   this.toppings = [];
+  this.totalPrice=0;
 }
 
-Pizza.prototype.addPizza=function (pizzaSize, toppingName) {
-  this.sizes.push(pizzaSize);
+Pizza.prototype.setSize=function (pizzaSize) {
+  this.size=pizzaSize;
+}
+
+Pizza.prototype.addToppings=function(toppingName){
   this.toppings.push(toppingName);
 }
 
