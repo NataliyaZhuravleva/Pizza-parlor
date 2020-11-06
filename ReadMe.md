@@ -57,6 +57,8 @@ _If you have any questions, ideas or concerns, please, contact me at [natalindri
 | Should calculate pizza price | pizza.setSize(medium); pizza.addToppings(salami); pizza.addToppings(pesto); pizza.calculatePizzaPrice(); | 13 |
 |_SizeList.prototype.addSize ()_ | | | 
 | Should add size to SizeList array| sizeList.addSize(small); | sizeList.sizes[0] = {pizzaSize: "10"", sizePrice: 9.5, id: 1} |
+|_ToppingList.prototype.addTopping ()_ | | | 
+| Should add topping to ToppingList array| toppingList.addTopping(salami); | toppingList.toppings[0] = {toppingName: "Salami", toppingPrice: 1.5, id: 1} |
 
 
 ### <span style="color:#0ec2b8">License</span> 
