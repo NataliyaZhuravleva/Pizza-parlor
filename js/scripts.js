@@ -1,4 +1,4 @@
-// Business logic:
+// Business logic----------------------------------------------------------------------------------------
 //Business logic for Pizza
 function Pizza() {
   this.sizePrice = 0;
@@ -31,8 +31,6 @@ Pizza.prototype.calculatePizzaPrice = function () {
   this.toppingPrices.forEach(function (topping) {
     toppingsTotalPrice += topping;
   });
-  //console.log(this.size.id);
-  //console.log(this.size.sizePrice);
   this.totalPrice = this.sizePrice + toppingsTotalPrice;
 }
 
@@ -98,12 +96,7 @@ toppingList.addTopping(basil);
 toppingList.addTopping(pesto);
 
 
-//pizza.setSize(medium);
-
-
-//pizza.calculatePizzaPrice();
-
-// User interface logic:
+// User interface logic---------------------------------------------------------------------
 function displayPizzaSizeList(SizeListToShow) {
   let pizzaSizeSelect = $("select#sizes");
   htmlForPizzaSizeList = "";
@@ -135,7 +128,6 @@ $(document).ready(function () {
   $("form#check-price").submit(function (event) {
     event.preventDefault();
     const choosenPizzaSizeID = parseFloat($("select#sizes").val());
-
     const choosenPizzaToppingIDs = $("#toppings input:checkbox:checked").map(function () {
       return parseFloat($(this).val());
     }).get();

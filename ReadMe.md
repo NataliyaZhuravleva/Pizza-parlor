@@ -65,7 +65,6 @@ _If you have any questions, ideas or concerns, please, contact me at [natalindri
 | Should show checklist with sizes| displayPizzaSizeList(sizeList) | Checklist for 10", 12", 14" |
 
 
-
 ### <span style="color:#0ec2b8">License</span> 
 
 *This software is licensed under the [MIT](https://choosealicense.com/licenses/mit/) license*
