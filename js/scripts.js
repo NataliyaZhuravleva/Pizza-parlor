@@ -11,14 +11,19 @@ Pizza.prototype.setSize = function (pizzaSize) {
 }
 
 Pizza.prototype.addToppings = function (toppingName) {
-  this.toppings.push(toppingName);
+  this.toppings= toppingName;
 }
 
 Pizza.prototype.calculatePizzaPrice = function () {
   let toppingsTotalPrice = 0;
-  this.toppings.forEach(function (topping) {
-    toppingsTotalPrice += topping.toppingPrice;
-  });
+  console.log(this.toppings);
+  this.toppings.forEach(function(topping) {
+    console.log(topping);
+    //console.log(topping.toppingPrice);
+    toppingsTotalPrice += toppings.toppingPrice;
+    //console.log(toppingsTotalPrice);
+  }); 
+ // console.log(toppingsTotalPrice);
   this.totalPrice = this.size.sizePrice + toppingsTotalPrice;
 }
 
@@ -117,14 +122,15 @@ $(document).ready(function () {
     event.preventDefault();
     const choosenPizzaSize = $("select#sizes").val();
 
-    const choosenPizzaToppings = $("#toppings input:checkbox:checked").map(function(){
-      return $(this).val();
-    }).get(); 
-    console.log(choosenPizzaToppings);
-    // pizza.setSize(choosenPizzaSize);
-    // pizza.addToppings(choosenPizzaToppings);
-    // console.log(pizza.size);
-    // console.log(pizza.toppings);
+    const choosenPizzaToppings = $("#toppings input:checkbox:checked").map(function () {
+      return parseFloat($(this).val());
+    }).get();
+    pizza.setSize(choosenPizzaSize);
+    pizza.addToppings(choosenPizzaToppings);
+    //console.log(pizza.size);
+    //console.log(pizza.toppings);
+    pizza.calculatePizzaPrice();
+    //console.log(pizza.totalPrice);
   });
 
 });
