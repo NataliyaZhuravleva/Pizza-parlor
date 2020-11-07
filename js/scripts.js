@@ -16,15 +16,10 @@ Pizza.prototype.addToppings = function (toppingName) {
 
 Pizza.prototype.calculatePizzaPrice = function () {
   let toppingsTotalPrice = 0;
-  console.log(this.toppings);
   this.toppings.forEach(function(topping) {
-    console.log(topping);
-    //console.log(topping.toppingPrice);
-    toppingsTotalPrice += toppings.toppingPrice;
-    //console.log(toppingsTotalPrice);
+    toppingsTotalPrice += topping;
   }); 
- // console.log(toppingsTotalPrice);
-  this.totalPrice = this.size.sizePrice + toppingsTotalPrice;
+  this.totalPrice = this.size + toppingsTotalPrice;
 }
 
 //Business logic for Size and SizeList
@@ -109,7 +104,6 @@ function displayPizzaToppingList(toppingListToShow) {
   htmlForPizzaToppingList = "";
   toppingListToShow.toppings.forEach(function (topping) {
     htmlForPizzaToppingList += "<label for=" + topping.id + "></label><input id='topping' type='checkbox' value=" + topping.toppingPrice + ">" + topping.toppingName + ": " + "$" + topping.toppingPrice + "</label><br>";
-    console.log(htmlForPizzaToppingList);
   })
   pizzaToppingSelect.html(htmlForPizzaToppingList);
 }
@@ -120,17 +114,14 @@ $(document).ready(function () {
   displayPizzaSizeList(sizeList);
   $("form#check-price").submit(function (event) {
     event.preventDefault();
-    const choosenPizzaSize = $("select#sizes").val();
-
-    const choosenPizzaToppings = $("#toppings input:checkbox:checked").map(function () {
+    const choosenPizzaSizePrice = parseFloat($("select#sizes").val());
+    const choosenPizzaToppingsPrice = $("#toppings input:checkbox:checked").map(function () {
       return parseFloat($(this).val());
     }).get();
-    pizza.setSize(choosenPizzaSize);
-    pizza.addToppings(choosenPizzaToppings);
-    //console.log(pizza.size);
-    //console.log(pizza.toppings);
+    pizza.setSize(choosenPizzaSizePrice);
+    pizza.addToppings(choosenPizzaToppingsPrice);
     pizza.calculatePizzaPrice();
-    //console.log(pizza.totalPrice);
+    console.log(pizza.totalPrice);
   });
 
 });
