@@ -1,25 +1,34 @@
 // Business logic:
 //Business logic for Pizza
 function Pizza() {
-  this.size = 0;
+  this.sizePrice = 0;
   this.toppings = [];
   this.totalPrice = 0;
 }
 
-Pizza.prototype.setSize = function (pizzaSize) {
-  this.size = pizzaSize;
+Pizza.prototype.setSize = function (pizzaSizeID) {
+ console.log(sizeList.sizes);
+  for (i = 0; i < sizeList.sizes.length; i++) { 
+    if (pizzaSizeID === sizeList.sizes[i].id) {
+      this.sizePrice = sizeList.sizes[i].sizePrice;
+    }
+  }
+console.log(this.sizePrice);
+
 }
 
 Pizza.prototype.addToppings = function (toppingName) {
-  this.toppings= toppingName;
+  this.toppings = toppingName;
 }
 
 Pizza.prototype.calculatePizzaPrice = function () {
   let toppingsTotalPrice = 0;
-  this.toppings.forEach(function(topping) {
+  this.toppings.forEach(function (topping) {
     toppingsTotalPrice += topping;
-  }); 
-  this.totalPrice = this.size + toppingsTotalPrice;
+  });
+  //console.log(this.size.id);
+  //console.log(this.size.sizePrice);
+  //this.totalPrice = this.size.sizePrice + toppingsTotalPrice;
 }
 
 //Business logic for Size and SizeList
@@ -73,7 +82,7 @@ sizeList.addSize(large);
 
 //pizza toppings
 let salami = new Topping("Salami", 1.5);
-let parmesan = new Topping("Parmezan", 0.9);
+let parmesan = new Topping("Parmesan", 0.9);
 let basil = new Topping("Basil", 0.5);
 let pesto = new Topping("Pesto", 1.1);
 
@@ -94,7 +103,7 @@ function displayPizzaSizeList(SizeListToShow) {
   let pizzaSizeSelect = $("select#sizes");
   htmlForPizzaSizeList = "";
   SizeListToShow.sizes.forEach(function (size) {
-    htmlForPizzaSizeList += "<option value=" + size.sizePrice + ">" + size.pizzaSize + "</option>"
+    htmlForPizzaSizeList += "<option value=" + size.id + ">" + size.pizzaSize + "</option>"
   })
   pizzaSizeSelect.html(htmlForPizzaSizeList);
 }
@@ -108,22 +117,24 @@ function displayPizzaToppingList(toppingListToShow) {
   pizzaToppingSelect.html(htmlForPizzaToppingList);
 }
 
-function displayPizzaTotalPrice(){
-  let pizzaTotalPriceSelect=$("div#result");
-  htmlForPizzaTotalPrice="<h3>Your Pizza will cost you $" +pizza.totalPrice+"!</h3>";
+function displayPizzaTotalPrice() {
+  let pizzaTotalPriceSelect = $("div#result");
+  htmlForPizzaTotalPrice = "<h3>Your Pizza will cost you $" + pizza.totalPrice + "!</h3>";
   pizzaTotalPriceSelect.html(htmlForPizzaTotalPrice);
 }
 
 $(document).ready(function () {
-  displayPizzaToppingList(toppingList);
   displayPizzaSizeList(sizeList);
+  displayPizzaToppingList(toppingList);
+
   $("form#check-price").submit(function (event) {
     event.preventDefault();
-    const choosenPizzaSizePrice = parseFloat($("select#sizes").val());
+    const choosenPizzaSizeID = parseFloat($("select#sizes").val());
+
     const choosenPizzaToppingsPrice = $("#toppings input:checkbox:checked").map(function () {
       return parseFloat($(this).val());
     }).get();
-    pizza.setSize(choosenPizzaSizePrice);
+    pizza.setSize(choosenPizzaSizeID);
     pizza.addToppings(choosenPizzaToppingsPrice);
     pizza.calculatePizzaPrice();
     displayPizzaTotalPrice();
