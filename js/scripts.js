@@ -117,14 +117,14 @@ $(document).ready(function () {
     event.preventDefault();
     const choosenPizzaSize = $("select#sizes").val();
 
-    let choosenPizzaToppings = [];
-    $("input#topping").toArray().forEach(function (topping) {
-      console.log(topping.value);
-      choosenPizzaToppings.push(topping.value);
-    });
-    
+    const choosenPizzaToppings = $("#toppings input:checkbox:checked").map(function(){
+      return $(this).val();
+    }).get(); 
+    console.log(choosenPizzaToppings);
+    // pizza.setSize(choosenPizzaSize);
+    // pizza.addToppings(choosenPizzaToppings);
+    // console.log(pizza.size);
+    // console.log(pizza.toppings);
   });
-
-
 
 });
