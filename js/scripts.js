@@ -2,23 +2,29 @@
 //Business logic for Pizza
 function Pizza() {
   this.sizePrice = 0;
-  this.toppings = [];
+  this.toppingPrices = [];
   this.totalPrice = 0;
 }
 
 Pizza.prototype.setSize = function (pizzaSizeID) {
- console.log(sizeList.sizes);
-  for (i = 0; i < sizeList.sizes.length; i++) { 
+  for (i = 0; i < sizeList.sizes.length; i++) {
     if (pizzaSizeID === sizeList.sizes[i].id) {
       this.sizePrice = sizeList.sizes[i].sizePrice;
     }
   }
-console.log(this.sizePrice);
-
 }
 
-Pizza.prototype.addToppings = function (toppingName) {
-  this.toppings = toppingName;
+Pizza.prototype.addToppings = function (toppingIDs) {
+  this.toppingPrices=[];
+  for (i = 0; i < toppingIDs.length; i++) {
+    for (j = 0; j < toppingList.toppings.length; j++) {
+      if (toppingIDs[i] === toppingList.toppings[j].id) {
+        this.toppingPrices.push(toppingList.toppings[j].toppingPrice);
+      }
+    }
+    
+  }
+  console.log(this.toppingPrices);
 }
 
 Pizza.prototype.calculatePizzaPrice = function () {
@@ -103,7 +109,7 @@ function displayPizzaSizeList(SizeListToShow) {
   let pizzaSizeSelect = $("select#sizes");
   htmlForPizzaSizeList = "";
   SizeListToShow.sizes.forEach(function (size) {
-    htmlForPizzaSizeList += "<option value=" + size.id + ">" + size.pizzaSize + "</option>"
+    htmlForPizzaSizeList += "<option value=" + size.id + ">" + size.pizzaSize + " - $" + size.sizePrice + "</option>"
   })
   pizzaSizeSelect.html(htmlForPizzaSizeList);
 }
@@ -112,7 +118,7 @@ function displayPizzaToppingList(toppingListToShow) {
   let pizzaToppingSelect = $("div#toppings");
   htmlForPizzaToppingList = "";
   toppingListToShow.toppings.forEach(function (topping) {
-    htmlForPizzaToppingList += "<label for=" + topping.id + "></label><input id='topping' type='checkbox' value=" + topping.toppingPrice + ">" + topping.toppingName + ": " + "$" + topping.toppingPrice + "</label><br>";
+    htmlForPizzaToppingList += "<label for=" + topping.id + "></label><input id='topping' type='checkbox' value=" + topping.id + ">" + topping.toppingName + ": $" + topping.toppingPrice + "</label><br>";
   })
   pizzaToppingSelect.html(htmlForPizzaToppingList);
 }
@@ -131,11 +137,12 @@ $(document).ready(function () {
     event.preventDefault();
     const choosenPizzaSizeID = parseFloat($("select#sizes").val());
 
-    const choosenPizzaToppingsPrice = $("#toppings input:checkbox:checked").map(function () {
+    const choosenPizzaToppingIDs = $("#toppings input:checkbox:checked").map(function () {
       return parseFloat($(this).val());
     }).get();
+
     pizza.setSize(choosenPizzaSizeID);
-    pizza.addToppings(choosenPizzaToppingsPrice);
+    pizza.addToppings(choosenPizzaToppingIDs);
     pizza.calculatePizzaPrice();
     displayPizzaTotalPrice();
   });
