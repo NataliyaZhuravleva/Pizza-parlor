@@ -108,6 +108,11 @@ function displayPizzaToppingList(toppingListToShow) {
   pizzaToppingSelect.html(htmlForPizzaToppingList);
 }
 
+function displayPizzaTotalPrice(){
+  let pizzaTotalPriceSelect=$("div#result");
+  htmlForPizzaTotalPrice="<h3>Your Pizza will cost you $" +pizza.totalPrice+"!</h3>";
+  pizzaTotalPriceSelect.html(htmlForPizzaTotalPrice);
+}
 
 $(document).ready(function () {
   displayPizzaToppingList(toppingList);
@@ -121,7 +126,7 @@ $(document).ready(function () {
     pizza.setSize(choosenPizzaSizePrice);
     pizza.addToppings(choosenPizzaToppingsPrice);
     pizza.calculatePizzaPrice();
-    console.log(pizza.totalPrice);
+    displayPizzaTotalPrice();
   });
 
 });
