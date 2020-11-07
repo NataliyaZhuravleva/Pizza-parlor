@@ -97,6 +97,7 @@ toppingList.addTopping(pesto);
 
 
 // User interface logic---------------------------------------------------------------------
+
 function displayPizzaSizeList(SizeListToShow) {
   let pizzaSizeSelect = $("select#sizes");
   htmlForPizzaSizeList = "";
@@ -117,7 +118,7 @@ function displayPizzaToppingList(toppingListToShow) {
 
 function displayPizzaTotalPrice() {
   let pizzaTotalPriceSelect = $("div#result");
-  htmlForPizzaTotalPrice = "<h3>Your Pizza will cost you $" + pizza.totalPrice + "!</h3>";
+  htmlForPizzaTotalPrice = "<h2>Your Pizza will cost you $" + pizza.totalPrice + "!</h2>";
   pizzaTotalPriceSelect.html(htmlForPizzaTotalPrice);
 }
 
