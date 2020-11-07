@@ -7,6 +7,7 @@ function Pizza() {
 }
 
 Pizza.prototype.setSize = function (pizzaSizeID) {
+  this.sizePrice=0;
   for (i = 0; i < sizeList.sizes.length; i++) {
     if (pizzaSizeID === sizeList.sizes[i].id) {
       this.sizePrice = sizeList.sizes[i].sizePrice;
@@ -15,26 +16,24 @@ Pizza.prototype.setSize = function (pizzaSizeID) {
 }
 
 Pizza.prototype.addToppings = function (toppingIDs) {
-  this.toppingPrices=[];
+  this.toppingPrices = [];
   for (i = 0; i < toppingIDs.length; i++) {
     for (j = 0; j < toppingList.toppings.length; j++) {
       if (toppingIDs[i] === toppingList.toppings[j].id) {
         this.toppingPrices.push(toppingList.toppings[j].toppingPrice);
       }
     }
-    
   }
-  console.log(this.toppingPrices);
 }
 
 Pizza.prototype.calculatePizzaPrice = function () {
   let toppingsTotalPrice = 0;
-  this.toppings.forEach(function (topping) {
+  this.toppingPrices.forEach(function (topping) {
     toppingsTotalPrice += topping;
   });
   //console.log(this.size.id);
   //console.log(this.size.sizePrice);
-  //this.totalPrice = this.size.sizePrice + toppingsTotalPrice;
+  this.totalPrice = this.sizePrice + toppingsTotalPrice;
 }
 
 //Business logic for Size and SizeList
