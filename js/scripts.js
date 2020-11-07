@@ -1,4 +1,5 @@
 // Business logic:
+//Business logic for Pizza
 function Pizza() {
   this.size = 0;
   this.toppings = [];
@@ -21,6 +22,7 @@ Pizza.prototype.calculatePizzaPrice = function () {
   this.totalPrice = this.size.sizePrice + toppingsTotalPrice;
 }
 
+//Business logic for Size and SizeList
 function Size(pizzaSize, sizePrice) {
   this.pizzaSize = pizzaSize;
   this.sizePrice = sizePrice;
@@ -39,6 +41,7 @@ SizeList.prototype.AssignID = function () {
   return this.sizeID;
 }
 
+//Business logic for Topping and ToppingList
 function Topping(toppingName, toppingPrice) {
   this.toppingName = toppingName;
   this.toppingPrice = toppingPrice;
@@ -56,6 +59,7 @@ ToppingList.prototype.AssignID = function () {
   return this.toppingID;
 }
 
+//Main Business logic
 let pizza = new Pizza();
 //pizza sizes
 let small = new Size('10"', 9.5);
@@ -90,7 +94,7 @@ function displayPizzaSizeList(SizeListToShow) {
   let pizzaSizeSelect = $("select#sizes");
   htmlForPizzaSizeList = "";
   SizeListToShow.sizes.forEach(function (size) {
-    htmlForPizzaSizeList += "<option value=" + size.id+">"+ size.pizzaSize + "</option>"
+    htmlForPizzaSizeList += "<option value=" + size.sizePrice + ">" + size.pizzaSize + "</option>"
   })
   pizzaSizeSelect.html(htmlForPizzaSizeList);
 }
@@ -99,7 +103,8 @@ function displayPizzaToppingList(toppingListToShow) {
   let pizzaToppingSelect = $("div#toppings");
   htmlForPizzaToppingList = "";
   toppingListToShow.toppings.forEach(function (topping) {
-    htmlForPizzaToppingList += "<label for="+topping.id+"></label><input type='checkbox'>" + topping.toppingName + ": " + "$" + topping.toppingPrice + "</label><br>";
+    htmlForPizzaToppingList += "<label for=" + topping.id + "></label><input id='topping' type='checkbox' value=" + topping.toppingPrice + ">" + topping.toppingName + ": " + "$" + topping.toppingPrice + "</label><br>";
+    console.log(htmlForPizzaToppingList);
   })
   pizzaToppingSelect.html(htmlForPizzaToppingList);
 }
@@ -108,7 +113,18 @@ function displayPizzaToppingList(toppingListToShow) {
 $(document).ready(function () {
   displayPizzaToppingList(toppingList);
   displayPizzaSizeList(sizeList);
+  $("form#check-price").submit(function (event) {
+    event.preventDefault();
+    const choosenPizzaSize = $("select#sizes").val();
 
-  event.preventDefault();
+    let choosenPizzaToppings = [];
+    $("input#topping").toArray().forEach(function (topping) {
+      console.log(topping.value);
+      choosenPizzaToppings.push(topping.value);
+    });
+    
+  });
+
+
 
 });
