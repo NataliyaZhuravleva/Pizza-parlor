@@ -44,10 +44,12 @@ function SizeList() {
   this.sizes = [];
   this.sizeID = 0;
 }
+
 SizeList.prototype.addSize = function (size) {
   size.id = this.AssignID();
   this.sizes.push(size);
 }
+
 SizeList.prototype.AssignID = function () {
   this.sizeID += 1;
   return this.sizeID;
@@ -62,16 +64,19 @@ function ToppingList() {
   this.toppings = [];
   this.toppingID = 0;
 }
+
 ToppingList.prototype.addTopping = function (topping) {
   topping.id = this.AssignID();
   this.toppings.push(topping);
 }
+
 ToppingList.prototype.AssignID = function () {
   this.toppingID += 1;
   return this.toppingID;
 }
 
-//Main Business logic
+// User interface logic---------------------------------------------------------------------
+
 let pizza = new Pizza();
 //pizza sizes
 let small = new Size('10"', 9.5);
@@ -95,9 +100,7 @@ toppingList.addTopping(parmesan);
 toppingList.addTopping(basil);
 toppingList.addTopping(pesto);
 
-
-// User interface logic---------------------------------------------------------------------
-
+//Displays checklist with possible sizes to user 
 function displayPizzaSizeList(SizeListToShow) {
   let pizzaSizeSelect = $("select#sizes");
   htmlForPizzaSizeList = "";
@@ -107,6 +110,7 @@ function displayPizzaSizeList(SizeListToShow) {
   pizzaSizeSelect.html(htmlForPizzaSizeList);
 }
 
+//Displays checkboxes with possible toppings to user 
 function displayPizzaToppingList(toppingListToShow) {
   let pizzaToppingSelect = $("div#toppings");
   htmlForPizzaToppingList = "";
@@ -116,6 +120,7 @@ function displayPizzaToppingList(toppingListToShow) {
   pizzaToppingSelect.html(htmlForPizzaToppingList);
 }
 
+//Displays result statement with pizza's cost
 function displayPizzaTotalPrice() {
   let pizzaTotalPriceSelect = $("div#result");
   htmlForPizzaTotalPrice = "<h2>Your Pizza will cost you $" + pizza.totalPrice + "!</h2>";
