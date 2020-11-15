@@ -6,8 +6,8 @@ function Pizza() {
   this.totalPrice = 0;
 }
 
-Pizza.prototype.setSize = function (pizzaSizeID) {
-  this.sizePrice=0;
+Pizza.prototype.setSize = function (pizzaSizeID, sizeList) {
+  this.sizePrice = 0;
   for (i = 0; i < sizeList.sizes.length; i++) {
     if (pizzaSizeID === sizeList.sizes[i].id) {
       this.sizePrice = sizeList.sizes[i].sizePrice;
@@ -15,7 +15,7 @@ Pizza.prototype.setSize = function (pizzaSizeID) {
   }
 }
 
-Pizza.prototype.addToppings = function (toppingIDs) {
+Pizza.prototype.addToppings = function (toppingIDs, toppingList) {
   this.toppingPrices = [];
   for (i = 0; i < toppingIDs.length; i++) {
     for (j = 0; j < toppingList.toppings.length; j++) {
@@ -76,34 +76,10 @@ ToppingList.prototype.AssignID = function () {
 }
 
 // User interface logic---------------------------------------------------------------------
-
-let pizza = new Pizza();
-//pizza sizes
-let small = new Size('10"', 9.5);
-let medium = new Size('12"', 10.5);
-let large = new Size('14"', 12);
-
-let sizeList = new SizeList();
-sizeList.addSize(small);
-sizeList.addSize(medium);
-sizeList.addSize(large);
-
-//pizza toppings
-let salami = new Topping("Salami", 1.5);
-let parmesan = new Topping("Parmesan", 0.9);
-let basil = new Topping("Basil", 0.5);
-let pesto = new Topping("Pesto", 1.1);
-
-let toppingList = new ToppingList();
-toppingList.addTopping(salami);
-toppingList.addTopping(parmesan);
-toppingList.addTopping(basil);
-toppingList.addTopping(pesto);
-
 //Displays checklist with possible sizes to user 
 function displayPizzaSizeList(SizeListToShow) {
   let pizzaSizeSelect = $("select#sizes");
-  htmlForPizzaSizeList = "";
+  let htmlForPizzaSizeList = "";
   SizeListToShow.sizes.forEach(function (size) {
     htmlForPizzaSizeList += "<option value=" + size.id + ">" + size.pizzaSize + " - $" + size.sizePrice + "</option>"
   })
@@ -113,7 +89,7 @@ function displayPizzaSizeList(SizeListToShow) {
 //Displays checkboxes with possible toppings to user 
 function displayPizzaToppingList(toppingListToShow) {
   let pizzaToppingSelect = $("div#toppings");
-  htmlForPizzaToppingList = "";
+  let htmlForPizzaToppingList = "";
   toppingListToShow.toppings.forEach(function (topping) {
     htmlForPizzaToppingList += "<label for=" + topping.id + "></label><input id='topping' type='checkbox' value=" + topping.id + ">" + topping.toppingName + ": $" + topping.toppingPrice + "</label><br>";
   })
@@ -121,13 +97,40 @@ function displayPizzaToppingList(toppingListToShow) {
 }
 
 //Displays result statement with pizza's cost
-function displayPizzaTotalPrice() {
+function displayPizzaTotalPrice(pizza) {
   let pizzaTotalPriceSelect = $("div#result");
-  htmlForPizzaTotalPrice = "<h2>Your Pizza will cost you $" + pizza.totalPrice + "!</h2>";
+  let htmlForPizzaTotalPrice = "<h2>Your Pizza will cost you $" + pizza.totalPrice + "!</h2>";
   pizzaTotalPriceSelect.html(htmlForPizzaTotalPrice);
 }
 
 $(document).ready(function () {
+
+  let pizza = new Pizza();
+  //pizza sizes
+  let small = new Size('10"', 9.5);
+  let medium = new Size('12"', 10.5);
+  let large = new Size('14"', 12);
+
+  let sizeList = new SizeList();
+  sizeList.addSize(small);
+  sizeList.addSize(medium);
+  sizeList.addSize(large);
+  console.log(sizeList);
+
+  //pizza toppings
+  let salami = new Topping("Salami", 1.5);
+  let parmesan = new Topping("Parmesan", 0.9);
+  let basil = new Topping("Basil", 0.5);
+  let pesto = new Topping("Pesto", 1.1);
+
+
+  let toppingList = new ToppingList();
+  toppingList.addTopping(salami);
+  toppingList.addTopping(parmesan);
+  toppingList.addTopping(basil);
+  toppingList.addTopping(pesto);
+  console.log(toppingList);
+
   displayPizzaSizeList(sizeList);
   displayPizzaToppingList(toppingList);
 
@@ -138,10 +141,10 @@ $(document).ready(function () {
       return parseFloat($(this).val());
     }).get();
 
-    pizza.setSize(choosenPizzaSizeID);
-    pizza.addToppings(choosenPizzaToppingIDs);
+    pizza.setSize(choosenPizzaSizeID, sizeList);
+    pizza.addToppings(choosenPizzaToppingIDs, toppingList);
     pizza.calculatePizzaPrice();
-    displayPizzaTotalPrice();
+    displayPizzaTotalPrice(pizza);
   });
 
 });
